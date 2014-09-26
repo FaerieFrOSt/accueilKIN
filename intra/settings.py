@@ -26,22 +26,14 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-#PASSWORD_HASHERS = (
-#        'intra.passwordHasher.ZeroSHA1PasswordHasher',
-#        'django.contrib.auth.hashers.PBKDF2PasswordHasher'
-#        )
-
-
-# Application definition
-
 INSTALLED_APPS = (
+	'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	#'phonenumber_field',
 	'kfet',
 	'users',
 	'tags',
@@ -98,6 +90,11 @@ LOGIN_URL = '/login/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
+STATICFILES_FINDER = (
+		'django.contrib.staticfiles.finder.AppDirectoriesFinder',
+		'django.contrib.staticfiles.finders.FileSystemFinder',
+)
+
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = ('static/',)
@@ -114,4 +111,5 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 		"django.contrib.messages.context_processors.messages",
 		"intra.context_processors.getTitle",
 		"intra.context_processors.getGadz",
+		"django.core.context_processors.request",
 		)
