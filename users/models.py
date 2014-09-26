@@ -48,6 +48,14 @@ class Client(User):
 				tmp.delete()
 			except (exceptions.ObjectDoesNotExist, exceptions.MultipleObjectsReturned):
 				return
-					
+
+	def delete(self, *args, **kwargs):
+		try:
+			tmp = radcheck.objects.get(username = self.username, value = self.radcheck_password)
+			tmp.delete()
+		except (exceptions.ObjectDoesNotExist, exceptions.MultipleObjectsReturned):
+			pass
+		super(Client, self).delete(*args, **kwargs)
+
 	def __unicode__(self):
 		return u"%s %s" %(self.first_name, self.last_name)

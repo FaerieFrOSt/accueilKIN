@@ -5,10 +5,6 @@
 			<form class = "ui form search" action = "{% url "kfet.views.print_pg" %}">
 				<div id = "id_search_pg_input" class = "ui icon small input">
 					<input autofocus = "autofocus" class = "prompt" auto-complete = "no" id = "id_search_pg" name = "search_pg" type = "text" placeholder = "Chercher un pg (Alt + P)">
-					<script type = "text/javascript">
-						if (!("autofocus" in document.createElement("input")))
-							document.getElementById("id_search_pg").focus();
-					</script>	
 					<i class = "search icon"></i>
 					<div class = "results" style = "font-size: 1.3em;"></div>
 				</div>
