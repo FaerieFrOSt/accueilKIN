@@ -1,0 +1,32 @@
+{% extends "navbar_user.html" %}
+{% load extra_filters %}
+{% block navbar_menu %}
+	{{ block.super }}
+	<div class = "item right link">
+		<i class = "users icon"></i>
+		<div class = "ui right corner blue small label" style = "top: 0.1rem;">42</div>
+	</div>
+	<div class = "item right link">
+		<i class = "globe icon"></i>
+		<div class = "ui right corner blue small label" style = "top: 0.1rem;">42</div>
+	</div>
+	<div class = "item right link">
+		<i class = "mail icon"></i>
+		<div class = "ui right corner blue small label" style = "top: 0.1rem;">42</div>
+	</div>
+{% endblock %}	
+
+{% block navbar_links %}
+	<a class = "item link {{ title|activate:'Kfet' }}" href = "{% url "kfet.views.index" %}">
+		<i class = "beer icon"></i>
+			Kfet
+	</a>
+	<a class = "item link {{ title|activate:'Download' }}" href = "#">
+		<i class = "desktop icon"></i>
+			Download
+	</a>
+	<a class = "item link {{ title|activate:'Boquettes' }}" href = "#">
+		<i class = "desktop icon"></i>
+			Boquettes
+	</a>
+{% endblock %}

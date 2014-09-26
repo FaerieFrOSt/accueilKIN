@@ -1,0 +1,35 @@
+{% load extra_filters %}
+<nav class = "ui inverted tiered menu">
+	<a class = "item link {{ title|activate:'Index' }}" href = "{% url "users.views.index" %}">
+		<i class = "home icon"></i>
+		KIN
+	</a>
+	{% block navbar_links %}{% endblock %}
+	{% block navbar_menu %}
+	<a class = "item right link login">
+		<i class = "sign in icon"></i>Connectez-vous
+	</a>
+	<form class = "item right sub login"  style = "max-height: 2rem; padding-top: 0.25rem;" action = "{% url "users.views.index" %}" method = "post">
+		{% csrf_token %}
+		<div class = "ui three fields">
+			<div class = "ui mini input">
+				<input id = "id_user" name = "user" type = "text" placeholder = "Utilisateur">
+			</div>
+			<div class = "ui mini input">
+				<input id = "id_password" name = "password" type = "password" placeholder = "Mot de passe">
+			</div>
+			<button type = "submit" value = "Submit" class = "ui tiny submit button">Connexion</button>
+	</form>
+	{% endblock %}
+	{% if title.0 == "Kfet" %}
+		{% include "kfet/navbar_kfet.html" %}
+	{% endif %}
+</nav>
+{% if messages %}
+	{% for msg in messages %}
+	<div class = "ui floating message {% if msg.tags %} {{ msg.tags }} {% endif %}">
+		<i class = "close icon"></i>
+		{{ msg|safe }}
+	</div>
+	{% endfor %}
+{% endif %}

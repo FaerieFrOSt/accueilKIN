@@ -1,0 +1,23 @@
+<div class = "right ui stacked secondary floated segment">
+	<legend>Historique</legend>
+	<table class = "ui table collapsing">
+		<thead>
+			<tr>
+				<th>Date</th>
+				<th>Nom</th>
+				<th>Prix</th>
+				<th>PG</th>
+			</tr>	
+		</thead>
+		<tbody>
+			{% for i in orders %}
+			<tr>
+				<td>{{ i.date }}</td>
+				<td><strong>{{ i.product.name }}</strong> par {{ i.vendor.user.username }}</td>
+				<td>{{ i.total_price }}</td>
+				<td>{{ i.gadz.user.username }}</td>
+			</tr>	
+	{% endfor %}
+		</tbody>
+	</table>
+</div>

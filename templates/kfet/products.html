@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load extra_filters %}
+
+{% block body %}
+<div class = "ui left floated segment">
+	<h1 class = "ui header">Produits actuellement proposés</h1>
+	<div class = "ui basic accordion">
+		{{ products|print_accordion|safe }}
+	</div>
+</div>	
+{% include "kfet/history.html" %}
+{% endblock %}
+
+{% block footer %}
+{{ parent }}
+<script type = "text/javascript">
+	$('.ui.accordion').accordion();
+</script>
+{% endblock %}

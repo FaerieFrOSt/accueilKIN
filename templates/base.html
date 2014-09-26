@@ -1,0 +1,80 @@
+{% load static %}
+{% load extra_filters %}
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>{% block title %}{{ title|set_title }}{% endblock %}</title>
+		<link rel = "stylesheet" href = "{% static "css/semantic.css" %}"/>
+	</head>	
+	
+	<body>
+	{% if user.is_authenticated %}
+		{% if gadz.is_gadz %}
+			{% include "navbar_gadz.html" %}
+		{% else %}
+			{% include "navbar_user.html" %}
+		{% endif %}	
+	{% else %}
+		{% include "navbar.html" %}
+	{% endif %}	
+		{% block body %}
+		{% endblock %}
+	</body>	
+	
+	<footer>
+		<script src = "{% static "javascript/jquery-1.11.1.min.js" %}" type = "text/javascript"></script>
+		<script src = "{% static "javascript/semantic.js" %}" type = "text/javascript"></script>
+		<!-- script for the navbar form -->
+		<script type = "text/javascript">
+			$(document).ready(function() {
+					$('.sub.login').hide();
+					$('.ui.dropdown').dropdown();
+					$('.message .close').on('click', function() {
+						$(this).closest('.message').fadeOut();
+						});
+					$('.link.login').click(function() {
+						$('.link.login').hide().end().find('.sub.login').slideDown();
+						});
+					});
+		</script>
+
+		{% if title.0 == "Kfet" %}
+		<!-- script for the key binding and the autocomplete stuff-->
+		<script type = "text/javascript">
+			$(document).keydown('p', function(e) {
+					alert("hello");
+					if (e.altkey)
+						$('#id_search_pg').focus();
+				});
+			$(document).ready(function() {
+					$('#id_search_pg_input').search(
+						debug : false,
+						performance : false,
+						verbose : true,
+						cache : false,
+						type : 'list',
+						searchFields : 'title',
+						templates: {
+							list : function(response) {
+								var html = "";
+								if (response.results !== 'undefined') {
+									$.each(response.results, function(index, result) {
+										html += '<div class = "result">';
+										html += '<div class = "info">';
+										if (result.title !== 'undefined') {
+											html += '<div class = "title">' + result.title + '</div>';
+										}
+										return html += '' + '</div>' + '</div>';
+									});
+									return html;
+								}
+								return false;
+								}}
+						});
+					});
+		</script>
+		{% endif %}
+		{% block footer %}
+		{% endblock %}
+	</footer>
+</html>	
