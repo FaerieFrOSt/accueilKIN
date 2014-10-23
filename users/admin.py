@@ -3,7 +3,7 @@ from django.contrib import admin
 from users.models import Client
 
 class   AdminClient(admin.ModelAdmin):
-	list_display = ('__str__', 'is_active', 'has_rezal', 'kgibss', 'phone', 'email')
+	list_display = ('username', 'first_name', 'last_name', 'is_active', 'has_rezal', 'kgibss', 'phone', 'email')
 	list_filter = ('is_active', 'has_rezal')
 	search_fields = ('first_name', 'last_name', 'kgibss', 'phone', 'email')
 	fieldsets = (

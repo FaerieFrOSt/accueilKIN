@@ -75,10 +75,7 @@ def getLinks(request):
 	if request.GET.get('q'):
 		l = request.GET['q']
 	values = [elem for elem in values if l in elem]
-	link = ""
-	for elem in values:
-		link += "<a class = 'item'>" + elem + "</a>"
-	return HttpResponse(link)
+	return HttpResponse(values)
 
 @login_required
 def settings(request):
