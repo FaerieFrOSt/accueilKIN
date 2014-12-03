@@ -1,35 +1,39 @@
 {% extends "base.html" %}
 
 {% block body %}
-<div class = "ui primary floated segment">
-	<h2 class = "ui blue center aligned header">Inscription</h2>
-	<br />
-	<form class = "ui form" method = "POST" action = "{% url "users.views.inscription" %}">
-		{% csrf_token %}
-		{% for i in form %}
-			{% if i.errors %}
-				<div class = "error field">
-			{% else %}
-				<div class = "field">
-			{% endif %}
-				<label>{{ i.label_tag }}</label>
-				<div class = "ui input">
-					{{ i }}
-					{% if i.field.required %}
-				<div class = "ui corner label"><i class = "icon asterisk"></i></div>
+<div class = "ui center aligned one column grid">
+	<div class = "four wide column">
+		<div class = "ui primary compact segment">
+			<h2 class = "ui blue center aligned header">Inscription</h2>
+			<br />
+			<form class = "ui form" method = "POST" action = "{% url "users.views.inscription" %}">
+				{% csrf_token %}
+				{% for i in form %}
+					{% if i.errors %}
+						<div class = "error field">
+					{% else %}
+						<div class = "field">
 					{% endif %}
-				</div>
-				{% if i.errors %}
-					<div class = "ui small red pointing above ui label">
-						{% for error in i.errors %}
-							{{ error|title }}
-						{% endfor %}
+					<label>{{ i.label_tag }}</label>	
+					<div class = "ui input">
+						{{ i }}
+						{% if i.field.required %}
+							<div class = "ui corner label"><i class = "icon asterisk"></i></div>
+						{% endif %}
 					</div>
-				{% endif %}
-			</div>
-		{% endfor %}
-		<br />
-		<button type = "submit" value = "Submit" class = "ui center aligned blue submit button">Inscription</button>
-	</form>
+					{% if i.errors %}
+						<div class = "ui small red pointing above ui label">
+							{% for error in i.errors %}
+								{{ error|title }}
+							{% endfor %}
+						</div>
+					{% endif %}
+					</div>
+				{% endfor %}
+				<br />
+				<button type = "submit" value = "Submit" class = "ui center aligned blue submit button">Inscription</button>
+			</form>
+		</div>
+	</div>
 </div>
 {% endblock %}
