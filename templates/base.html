@@ -41,6 +41,14 @@
 		{% if title.0 == "Kfet" %}
 		<!-- script for the key binding and the autocomplete stuff-->
 		<script type = "text/javascript">
+			$('.ui.search').search({
+				apiSettings : {
+					url: '{% url "kfet.views.getPgs" %}?pg={query}',
+					query: '{% url "kfet.views.getPg" %}?pg={query}'
+				},
+				debug: true,
+				verbose: true
+			});
 		</script>
 		{% endif %}
 		{% block footer %}

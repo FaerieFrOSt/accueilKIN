@@ -1,12 +1,12 @@
 {% load extra_filters %}
 <div class = "ui sub menu">
 	<div class = "menu">
-		<div class = "item">
-			<div class = "ui icon search input">
-				<input autofocus = "autofocus" type = "text" placeholder = "Chercher un pg (Alt + P)">
-				<i class = "search icon"></i>
-				<div class = "results"></div>
-			</div>	
+		<div class = "item ui search">
+			<div class = "ui icon input">
+				<input name = "pg" class = "prompt" autofocus = "autofocus" type = "text" placeholder = "Chercher un pg (Alt + P)">
+				<i class = "search icon button"></i>
+			</div>
+			<div class = "results"></div>
 		</div>
 		<a class = "item link {{ title|activate:'Products' }}" href = "{% url "kfet.views.products" %}">Produits</a>
 		<a class = "item link {{ title|activate:'Statistics' }}" href = "{% url "kfet.views.statistics" %}">Statistiques</a>
