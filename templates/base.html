@@ -41,37 +41,14 @@
 		{% if title.0 == "Kfet" %}
 		<!-- script for the key binding and the autocomplete stuff-->
 		<script type = "text/javascript">
-			$(document).keydown('p', function(e) {
-					alert("hello");
-					if (e.altkey)
-						$('#id_search_pg').focus();
-				});
-			$(document).ready(function() {
-					$('#id_search_pg_input').search(
-						debug : false,
-						performance : false,
-						verbose : true,
-						cache : false,
-						type : 'list',
-						searchFields : 'title',
-						templates: {
-							list : function(response) {
-								var html = "";
-								if (response.results !== 'undefined') {
-									$.each(response.results, function(index, result) {
-										html += '<div class = "result">';
-										html += '<div class = "info">';
-										if (result.title !== 'undefined') {
-											html += '<div class = "title">' + result.title + '</div>';
-										}
-										return html += '' + '</div>' + '</div>';
-									});
-									return html;
-								}
-								return false;
-								}}
-						});
-					});
+			$('.ui.search').search({
+				apiSettings : {
+					url: '{% url "kfet.views.getPgs" %}?pg={query}',
+					query: '{% url "kfet.views.getPg" %}?pg={query}'
+				},
+				debug: true,
+				verbose: true
+			});
 		</script>
 		{% endif %}
 		{% block footer %}

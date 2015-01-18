@@ -1,21 +1,19 @@
 {% load extra_filters %}
 <div class = "ui sub menu">
 	<div class = "menu">
-		<div class = "item" style = "height : 0.1rem; top: -1rem;">
-			<form class = "ui form search" action = "{% url "kfet.views.print_pg" %}">
-				<div id = "id_search_pg_input" class = "ui icon small input">
-					<input autofocus = "autofocus" class = "prompt" auto-complete = "no" id = "id_search_pg" name = "search_pg" type = "text" placeholder = "Chercher un pg (Alt + P)">
-					<i class = "search icon"></i>
-					<div class = "results" style = "font-size: 1.3em;"></div>
-				</div>
-			</form>	
+		<div class = "item ui search">
+			<div class = "ui icon input">
+				<input name = "pg" class = "prompt" autofocus = "autofocus" type = "text" placeholder = "Chercher un pg (Alt + P)">
+				<i class = "search icon button"></i>
+			</div>
+			<div class = "results"></div>
 		</div>
 		<a class = "item link {{ title|activate:'Products' }}" href = "{% url "kfet.views.products" %}">Produits</a>
 		<a class = "item link {{ title|activate:'Statistics' }}" href = "{% url "kfet.views.statistics" %}">Statistiques</a>
 		{% if gadz.credit <= 0 %}
-		<div class = "right item" style = "color: #A95252">Solde : {{ gadz.credit }} €</div>
+		<div class = "right item"><div class = "ui red label">Solde : {{ gadz.credit }} €</div></div>
 		{% else %}
-			<div class = "right item label">Solde : {{ gadz.credit }} €</div>
+			<div class = "right item"><div class = "ui black label">Solde : {{ gadz.credit }} €</div></div>
 		{% endif %}
 	</div>	
 </div>	
