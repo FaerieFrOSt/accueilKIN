@@ -82,27 +82,23 @@ def getLinks(request):
 
 @login_required
 def settings(request):
-    try:
-        gadz = Client.objects.get(username = request.user.username)
-        if gadz.is_gadz:
-            f = UserEditForm
-            i = gadz
-        else:
-            f = UserEditForm
-            i = gadz
-    except (AttributeError, exceptions.ObjectDoesNotExist):
-        f = UserEditForm
-        i = request.user
-    if request.method == 'POST':
-        form = f(request.POST, instance = i)
-        if form.is_valid():
-            form.save()
-            messages.success(request, u"<strong>Enregistrement réussi.</strong>")
-            return redirect("users.views.settings")
-        else:
-            messages.error(request, form.cleaned_data())
-            messages.error(request, u"<strong>Erreur lors de l'enregistrement.</strong>")
-            return redirect("users.views.settings")
-    else:
-        form = f(instance = i)
-    return render(request, 'users/settings.html', {'form' : form})
+	try:
+		gadz = Client.objects.get(username = request.user.username)
+		f = UserEditForm
+		i = gadz
+	except (AttributeError, exceptions.ObjectDoesNotExist):
+		f = UserEditForm
+		i = request.user
+	if request.method == 'POST':
+		form = f(request.POST, instance = i)
+		if form.is_valid():
+			form.save()
+			messages.success(request, u"<strong>Enregistrement réussi.</strong>")
+			return redirect("users.views.settings")
+		else:
+			messages.error(request, form.cleaned_data)
+			messages.error(request, u"<strong>Erreur lors de l'enregistrement.</strong>")
+			return redirect("users.views.settings")
+	else:
+		form = f(instance = i)
+	return render(request, 'users/settings.html', {'form' : form})

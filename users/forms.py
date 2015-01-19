@@ -36,11 +36,16 @@ class UserEditForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		self.request = kwargs.pop('request', None)
 		super(UserEditForm, self).__init__(*args, **kwargs)
-		self.fields['first_name'].widget.attrs['disabled'] = True
-		self.fields['last_name'].widget.attrs['disabled'] = True
+		self.fields['first_name'].widget.attrs['disabled'] = "True"
+		self.fields['last_name'].widget.attrs['disabled'] = "True"
 		self.fields['first_name'].required = True
 		self.fields['last_name'].required = True
 		self.fields['email'].required = True
+
+	def clean(self):
+		cleaned_data = super(UserEditForm, self).clean()
+		cleaned_data['first_name'] = self.clean_first_name()
+		cleaned_data['last_name'] = self.clean_last_name()
 
 	def	clean_first_name(self):
 		instance = getattr(self, 'instance', None)
