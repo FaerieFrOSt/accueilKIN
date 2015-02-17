@@ -1,5 +1,6 @@
 # -*- coding: utf8 -*-
 from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from thuysses.forms import ThuysseForm
 from thuysses.models import Thuysse
 import json
@@ -11,6 +12,7 @@ from thuysses.matieres import choix_matieres, choix_ss_matieres, type_matiere
 
 # Create your views here.
 
+@login_required
 def index (request):
 	""" Function doc """
 	thuysses_plus_DL = Thuysse.objects.all().order_by('DL_Thuysse').reverse()[:10]
@@ -18,6 +20,7 @@ def index (request):
 	thuysseurs = Client.objects.annotate(num_Thuysse=Count('thuysse'))[:10]
 	return render(request, 'thuysses/index.html', {'thuysses_plus_DL' : thuysses_plus_DL, 'name_last_thuysse' : name_last_thuysse, 'thuysseurs' : thuysseurs})
 
+@login_required
 def get_page(request, annee = None, matiere = None):
 	if annee == None:
 		return redirect(index, request)
@@ -37,14 +40,17 @@ def get_page(request, annee = None, matiere = None):
 												genre=j[0], sous_matiere=i)
 	return render(request, 'thuysses/matiere_page.html', {'annee' : annee, 'matiere' : matiere, 'dico' : dico, 'ss_mat' : len(ss_mat) != 0})
 
+@login_required
 def third (request, matiere = None):
 	""" Function doc """
 	return index(request)
 	
+@login_required
 def other (request, matiere = None):
 	""" Function doc """
 	return index(request)
 
+@login_required
 def action_change(request):
 	""" Function doc """
 	action_list = []
@@ -72,6 +78,7 @@ def action_change(request):
 	j = json.dumps(choices)
 	return HttpResponse(j, content_type = 'application/javascript')
 
+@login_required
 def save_thuysse (request):
 	""" Function doc"""
 	envoi = False
@@ -88,6 +95,7 @@ def save_thuysse (request):
 		form = ThuysseForm()
 	return render(request, 'thuysses/creer_thuysse.html', {'form' : form, 'envoi' : envoi})		
 
+@login_required
 def download (request, id_dl):
 	""" Function doc """
 	obj = get_object_or_404(Thuysse, id = id_dl)
