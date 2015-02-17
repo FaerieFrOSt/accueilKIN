@@ -7,7 +7,7 @@
 		<link rel = "stylesheet" href = "{% static "css/semantic.css" %}"/>
 	</head>	
 	
-	<body>
+	<body {% block bodystyle %}{% endblock %}>
 	{% if user.is_authenticated %}
 		{% if gadz.is_gadz %}
 			{% include "navbar_gadz.html" %}

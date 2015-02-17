@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block bodystyle %}style = "background-color: #06002E;"{% endblock %}
+
+{% block body %}
+<style>
+	@font-face {
+    font-family: 'old';
+    src: url("{% static 'fonts/old.eot' %}") format('eot'),
+         url("{% static 'fonts/old.woff' %}") format('woff'),
+         url("{% static 'fonts/old.truetype' %}") format('truetype'),
+         url("{% static 'fonts/old.svg' %}") format('svg');
+}
+</style>
+	<div class = "ui grid" style = "background-color: #06002E;">
+		{% include "thuysses/navbar.html" %}
+		<div class = "ui twelve wide column">
+			{% block body2 %}
+			{% endblock %}
+			<div class = "ui divider inverted section"></div>
+			<div style = "text-align : center; color : white;">
+				<a class = "ui link" href="{% url 'thuysses.views.save_thuysse' %}"><p>Ajouter une nouvelle thuysse</p><img src="{% static 'images/mes_doc.png' %}"></a>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block footer %}
+	<script>
+		$('.ui.accordion').accordion();
+	</script>
+	<script src = '{% static "javascript/action_change.js" %}'></script>
+{% endblock %}

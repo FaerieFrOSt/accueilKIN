@@ -1,0 +1,51 @@
+{% extends "thuysses/base.html" %}
+
+{% block body2 %}
+<script>
+	$('.ui.accordion').accordion("open", {{ annee }} - 1);
+</script>
+<h1 class = "ui header" style = "font-family: 'old';text-align: center; text-decoration: underline; color : white;">{{ matiere|title }}</h1>
+<div class = "ui basic accordion" style = "position: relative; left: 2em;">
+	{% if not ss_mat %} 
+	{% for value, content in dico.items %}
+		{% if content %}
+	<div class = "title">
+		<i class = "icon dropdown" style = " color : white;"></i>
+		<font color = "white">{{ value }}</font>
+	</div>
+	<div class = "content">
+		<div class = "ui bulleted link list" style = "position: relative; left: 5em;">
+			{% for i in content %}
+			<a class = "link item" href = "{% url 'thuysses.views.download' i.id %}" style="color: rgba(255, 255, 255, 0.75);">
+				{{ i.name }}
+			</a>
+			{% endfor %}
+		</div>
+	</div>
+	{% endif %}
+	{% endfor %}
+	{% else %}
+	{% for sous_mat,d in dico.items%}
+	<h4 class = "ui header center aligned segment inverted"style=" background-color : rgba(0,0,0,0)!important;border-style : solid;border-width:1px;border-color : rgba(255,255,255,0.15)">{{sous_mat|title}}</h4>
+	{% for value, content in d.items %}
+		{% if content %}
+	<div class = "title">
+		<i class = "icon dropdown" style = " color : white;"></i>
+		<font color = "white">{{ value }}</font>
+	</div>
+	<div class = "content">
+		<div class = "ui bulleted link list" style = "position: relative; left: 5em;">
+			{% for i in content %}
+			<a class = "link item" href = "{% url 'thuysses.views.download' i.id %}" style="color: rgba(255, 255, 255, 0.75);">
+				{{ i.name }}
+			</a>
+			{% endfor %}
+		</div>
+	</div>
+	{% endif %}
+	{% endfor %}
+	{% endfor %}
+	{% endif %}
+</div>
+{% endblock %}
+

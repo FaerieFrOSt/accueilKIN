@@ -37,6 +37,7 @@ INSTALLED_APPS = (
 	'kfet',
 	'users',
 	'tags',
+	'thuysses',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -112,4 +113,5 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 		"intra.context_processors.getTitle",
 		"intra.context_processors.getGadz",
 		"django.core.context_processors.request",
+		"intra.context_processors.getTable",
 		)

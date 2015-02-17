@@ -1,0 +1,64 @@
+{% extends "thuysses/base.html" %}
+
+{% block body2 %}
+<h1 class = "ui inverted center aligned header" style = "font-family: 'old';"> Sal'ss</h1>
+<h4 class = "ui inverted header"><br>Tu thuysses ou tu thuysses pas?<br>Si certains liens te semblent inaccessibles ou si tu trouves
+que certaines rubriques manquent de thuysses, rop'ss un zident via l'email de la boquette:   thuysses.kin@gmail.com<br>Bon coürage à toüs!!<br> Z'merss
+aux nombreux PG qui alimentent le site</h4>
+<h4 class = "ui inverted header">Les Zidents Thuysses 213:<br><br>Silmaril 111<br>Azerty 118-163</h4>
+<div class = "ui divider inverted section"></div>
+<div class = "ui three column grid">
+	<div class = "column">
+		<div class = "ui center aligned segment"style="background-color : rgba(0,0,0,0);border-style : double;border-color : rgba(255,255,255,0.15)">
+			<h3 class = "ui header inverted"style= "font-family: 'old';border-style : solid;border-color : rgba(255,255,255,0.15); border-width : thin">Nouvelles Thuysses</h3>
+			<table class="ui basic table inverted"style= "background-color: rgba(0, 0, 0, 0)!important; border-style: solid; border-color: rgba(255, 255, 255, 0.15); border-width: thin;">
+				{% for i in name_last_thuysse %}
+				<tr>
+					<td><a target = "_blank" title = "Envoyée par {{ i.publisher.username }}, créée par {{ i.auteur }}" style="color: rgba(255, 255, 255, 0.75);" href = "{% url 'thuysses.views.download' i.id %}">{{ i.name }}</a></td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+	<div class = "column">
+		<div class = "ui segment center aligned" style="background-color : rgba(0,0,0,0);border-style : double;border-color : rgba(255,255,255,0.15)">
+			<h3 class = "ui header inverted" style= "font-family: 'old';border-style : solid;border-color : rgba(255,255,255,0.15); border-width : thin">Thuysseurs foüs</h3>
+			<table class = "ui basic table inverted" style = "background-color: rgba(0, 0, 0, 0)!important; border-style: solid; border-color: rgba(255, 255, 255, 0.15); border-width: thin;">
+				<thead>
+					<tr>
+						<th>Thuysseur</th>
+						<th>Thuysses</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in thuysseurs %}
+					{% if i.thuysse_set.count %}
+						<tr>
+							<td>{{ i.username }}</td>
+							<td>{{ i.thuysse_set.count }}</td>
+						</tr>
+					{% endif %}
+					{% endfor %}	
+				</tbody>	
+			</table>
+		</div>
+	</div>
+	<div class = "column">
+		<div class = "ui segment center aligned"style="background-color : rgba(0,0,0,0);border-style : double;border-color : rgba(255,255,255,0.15)">
+			<h3 class = "ui header inverted"style= "font-family: 'old';border-style : solid;border-color : rgba(255,255,255,0.15); border-width : thin">Top 10 des thuysses</h3>
+			<table class="ui basic table inverted" style = "background-color: rgba(0, 0, 0, 0)!important; border-style: solid; border-color: rgba(255, 255, 255, 0.15); border-width: thin;">
+				<tr>
+					<td>Thuysse</td>
+					<td>DL</td>
+				</tr>
+				{% for i in thuysses_plus_DL %}
+					<tr>
+						<td><a target = "_blank" title = "Envoyée par {{ i.publisher.username }}, créée par {{ i.auteur }}" style="color: rgba(255, 255, 255, 0.75);" href = "#">{{ i.name }}</a></td>
+						<td>{{ i.DL_Thuysse}}</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}

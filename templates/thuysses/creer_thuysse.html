@@ -1,0 +1,16 @@
+{% extends "thuysses/base.html" %}
+
+{% block body2 %}
+
+{% if envoi %}
+	<h2 class = "ui header inverted">Votre thuysse a bien été envoyée !</h2>
+{% endif %}
+
+<h2 class = "ui header inverted"style= "font-family: 'old'">Envoyer une nouvelle thuysse</h2>
+
+<form action="{% url 'thuysses.views.save_thuysse' %}" method="post" enctype = "multipart/form-data" style = "color: white;">{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Envoyer"/>
+</form>
+
+{% endblock %} 

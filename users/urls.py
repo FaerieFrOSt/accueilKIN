@@ -8,4 +8,5 @@ urlpatterns = patterns('users.views',
 		url(r'^getLinks/', "getLinks", name = 'links'),
 		url(r'^settings/$', "settings", name = 'settings'),
 		url(r'^inscription/$', "inscription", name = 'inscription'),
+		url(r'^boquettes/$', "boquettes", name = "boquettes"),
 )

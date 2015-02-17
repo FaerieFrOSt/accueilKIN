@@ -106,3 +106,8 @@ def settings(request):
     else:
         form = f(instance = i)
     return render(request, 'users/settings.html', {'form' : form})
+
+@login_required
+def boquettes(request):
+	boquettes = [{'link' : 'thuysses.views.index', 'name' : 'thuysses'},]
+	return render(request, 'users/boquettes.html', {'boquettes' : boquettes})

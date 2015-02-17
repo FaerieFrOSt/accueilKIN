@@ -1,0 +1,71 @@
+{% load static %}
+<div class = "ui three wide column" style = "background: linear-gradient(to bottom, rgba(22, 35, 124, 1), #06002E);">
+<div class = "ui inverted labeled icon vertical accordion menu" style = "background: linear-gradient(to bottom, rgba(22, 35, 124, 1), #06002E);">
+	<a class = "item" href = "{% url 'thuysses.views.index' %}" style = "font-family: 'old'; font-size : 30px"><img src = "{% static 'images/sonic.png' %}" style = "height: 100px;"/>Thuysse KIN</a>
+	<div class = "item">
+		<div class = "title" style = "text-align: left;">
+			<i class = "dropdown icon"></i>
+			<h4 style = "color: rgba(255, 255, 255, 0.8);">Première année</h4>
+		</div>
+		<div class = "content">
+			<div class = "menu">
+			{% for i in first %}
+				<a class = "item" href = "{% url 'thuysses.views.get_page' 'first' i %}">{{ i }}</a>
+			{% endfor %}
+			</div>
+		</div>
+	</div>
+	<div class = "item">
+		<div class = "title" style = "text-align: left;">
+			<i class = "dropdown icon"></i>
+			<h4 style = "color: rgba(255, 255, 255, 0.8);">Deuxième année GM</h4>
+		</div>
+		<div class = "content">
+			<div class = "menu">
+			{% for i in secondGM %}
+				<a class = "item" href = "{% url 'thuysses.views.get_page' 'secondGM' i %}">{{ i }}</a>
+			{% endfor %}
+			</div>
+		</div>
+	</div>
+	<div class = "item">
+		<div class = "title" style = "text-align: left;">
+			<i class = "dropdown icon"></i>
+			<h4 style = "color: rgba(255, 255, 255, 0.8);">Deuxième année GI</h4>
+		</div>
+		<div class = "content">
+			<div class = "menu">
+			{% for i in secondGI %}
+				<a class = "item" href = "{% url 'thuysses.views.get_page' 'secondGI' i %}">{{ i }}</a>
+			{% endfor %}	
+			</div>
+		</div>
+	</div>
+	<div class = "item">	
+		<div class = "title" style = "text-align: left;">
+			<i class = "dropdown icon"></i>
+			<h4 style = "color: rgba(255, 255, 255, 0.8);">Troisième année</h4>
+		</div>
+		<div class = "content">
+			<div class = "menu">
+			{% for i in third %}
+				<a class = "item" href = "{% url 'thuysses.views.third' i %}">{{ i }}</a>
+			{% endfor %}	
+			</div>
+		</div>
+	</div>
+	<div class = "item">	
+		<div class = "title" style = "text-align: left;">
+			<i class = "dropdown icon"></i>
+			<h4 style = "color: rgba(255, 255, 255, 0.8);">Autres</h4>
+		</div>
+		<div class = "content">
+			<div class = "menu">
+			{% for i in other %}
+				<a class = "item" href = "{% url 'thuysses.views.other' i %}">{{ i }}</a>
+			{% endfor %}	
+			</div>
+		</div>
+	</div>
+</div>
+</div>
