@@ -98,6 +98,8 @@ STATICFILES_FINDER = (
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = 'collectedStaticFiles'
+
 STATICFILES_DIRS = ('static/',)
 
 TEMPLATE_DIRS = ('templates/',)
